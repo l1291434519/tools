@@ -1,0 +1,104 @@
+<script type="text/javascript" src="js/autoZoomLoadImage.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.js"></script>   
+<script type="text/javascript">
+            
+
+    function pageselectCallback(page_index, jq){
+              //alert(page_index);
+              // Prevent click eventpropagation
+              $.getJSON("/mistra/index.php?c=jiaoche&m=page", {page:page_index},
+                  function (json) {
+                      if (json.status == '1') {
+                           data = json.data;
+                           //alert(data);
+                           var str = ''
+
+                           str = '';
+                           $.each(data,function(index,da){
+
+                            if (index == 0) {
+                              var str1 = '<div style=" text-align:center;"><img id="imgc" alt="" width="100%" height="100%" src="uploads/'+da.img+'"></div>'+
+                        '<p>"'+da.content+'</p>'+
+                        '<div class="from">来自：<span>'+da.username+'</span></div>';
+						  $(".left_nwes").html(str1);
+						  $("#imgc").autoZoomLoadImage(true, 520, 350);
+                            };
+
+                              str += '<li><a href="javascript:void(0)" ><div style="text-align:center; height:111px;"><img height="100%" width="100%" id="imgt" alt="'+da.content+'" src="uploads/'+da.img+'" uname="'+da.username+'" /></div><span class="imgcontent"></span></a></li>';
+                            });
+
+                           $('#datalist').html(str);
+							$("#imgt").autoZoomLoadImage(true, 170, 111);
+                      }else {
+                          console.warn("Fail: ", json);
+                      }
+
+
+                $(".imgcontent").on("click",function(){
+                    var jie = $(this).prev('div').children('img');
+                      var str = '<div style=" text-align:center;"><img id="imgc" alt="'+jie.attr('alt')+'" src="'+jie.attr('src')+'">'+
+                        '</div><p>"'+jie.attr('alt')+'</p>'+
+                        '<div class="from">来自：<span>'+jie.attr('uname')+'</span></div>';
+                      $(".left_nwes").html(str);
+					  
+					  $("#imgc").autoZoomLoadImage(true, 520, 350);
+                  }); 
+
+
+
+
+                  });
+
+              return false;
+          }
+          
+
+          function getOptionsFromForm(){
+            var page_index = 1;
+            var jq = 1;
+              var opt = {
+              items_per_page: 3,
+              next_text:'<img width="97" height="19" src="images/next.png">',
+              num_display_entries: 3,
+              num_edge_entries: 2,
+              prev_text:'<img width="97" height="19" src="images/pre.png">',
+              callback: pageselectCallback
+              };
+              console.log(opt);
+              return opt;
+          };
+    
+          // When document has loaded, initialize pagination and form 
+    $(document).ready(function(){
+          // Create pagination element with options from form
+          
+          $.getJSON("/mistra/index.php?c=jiaoche&m=page", false,
+              function (json) {
+                  var data = '';
+                  if (json.status == "1") {
+                       data = json.data;
+
+                       var optInit = getOptionsFromForm();
+                  $(".page").pagination(data.length, optInit);
+                      //console.log(json.data);
+
+                     // hailong.testDrive.onDealerDataReady(json.data);
+
+                  } else {
+                      console.warn("Fail: ", json);
+                  }
+              }).error(function (e) {
+                  console.error("_getDealerList: ", e);
+              });
+          
+              // Event Handler for for button
+              $("#setoptions").click(function(){
+                  var opt = getOptionsFromForm();
+                  // Re-create pagination content with new parameters
+                  $("#Pagination").pagination(data.length, opt);
+              });
+
+
+    });
+            
+</script>

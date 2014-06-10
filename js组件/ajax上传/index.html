@@ -1,0 +1,72 @@
+
+
+ <form action="/mistra/index.php/jiaoche?act=sub&url=http://club.beijing-hyundai.com.cn/mistra/car01.php" method='POST' id="jiaocheform" enctype="multipart/form-data">
+    <div class="sub_box03">
+
+
+        <input type="file" class="photofile" id="fileupload" name="img">
+        
+       <input type="hidden" class="photofile" id="imgurl" name="info[imgurl]">
+       <input type="button" value="" onclick="hailong.comm._submitData('jiaocheform');" class="submit"  />
+    </div>
+
+    </form>
+
+
+
+
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="js/jquery.ui.widget.js"></script>
+
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="js/jquery.fileupload.js"></script>
+<script>
+/*jslint unparam: true */
+/*global window, $ */
+$(function () {
+    //'use strict';
+    // Change this to the location of your server-side upload handler:
+
+    $('#fileupload').fileupload({
+        url: '/mistra/index.php/upload',
+        dataType: 'json',
+    acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        maxFileSize: 1000000, // 1 MB
+        loadImageMaxFileSize: 1000000, // 1MB
+        disableImageResize: false,
+    success: function (json) { 
+        //$('#files').html(json);
+                //$('#MemType_zmt_pic').attr('value',json.upfile.file); 
+                //alert(111);
+        if(json.status == "1"){
+          $("#upimg").attr('src','uploads/'+json.data.upload_data.file_name); 
+          $("#imgurl").val(json.data.upload_data.file_name); 
+          //$('#image_url').attr('value',json.msg);  
+        }else{
+          alert(json.msg);
+        }
+                //$("#images").attr('src','upload/'+json);  
+        //$('#image_url').attr('value',json); 
+        
+        
+        },
+    done: function (e, data) {
+      //alert(222);
+      $('.loading').hide();
+      $('.upload_btn').show();
+        },
+    progressall: function (e, data) {
+            //$('#fileupload').attr("class","loading");
+           // alert(3333);
+      $('.upload_btn').hide();
+      $('.loading').show();
+        },
+
+    });
+});
+
+
+
+</script>
