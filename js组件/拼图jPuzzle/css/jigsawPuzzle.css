@@ -1,0 +1,104 @@
+*{margin:0;padding:0;}
+body,html{
+	text-align:center;
+	background-color:#111111;
+}
+.jp-operation{
+	position : relative;
+	margin:10px auto;
+	text-align:center;
+	height:30px;
+	border:1px solid #b4b4b4;
+	background-color:#333333;
+}
+.start{
+	position:absolute;
+	width:120px;
+	height:30px;
+	top:0px;
+	left:2px;
+	cursor:pointer;
+}
+.timer{
+	position:absolute;
+	width:120px;
+	height:30px;
+	line-height:30px;
+	top:0px;
+	right:2px;
+	cursor:pointer;
+	color:#60a2e5;
+	font-size:12px;
+}
+#egg{
+    position : relative;
+	margin:0px auto;
+	text-align:center;
+	padding:2px;
+	border:1px solid #b4b4b4;
+	overflow:hidden;
+}
+.jp-msg-bg{
+	position:absolute;
+	top:0px;
+	left:0px;
+	background-color:#111111;
+	text-align:center;
+	z-index:9999;
+}
+.jp-msg-chicken{
+	position:absolute;
+	top:-320px;
+	width:300px;
+	height:320px;
+	z-index:10001;
+	background-image:url("../images/jp-msg-bg.png");
+	background-position:0px 0px;
+   	background-repeat: no-repeat;
+}
+.jp-msg-cxt{
+	position:absolute;
+	bottom:35px;
+	left:80px;
+	width:140px;
+	height:30px;
+	line-height:30px;
+	color:#60a2e5;
+	font-size:12px;
+	text-align : center;
+	cursor : pointer;
+	font-family:'»ªÎÄÏ¸ºÚ','Î¢ÈíÑÅºÚ',arial,sans-serif;
+	background-color:#333333;
+	border:1px solid #222222;
+}
+.jp-msg-restart{
+	position:absolute;
+	bottom:5px;
+	left:80px;
+	width:140px;
+	height:30px;
+	line-height:30px;
+	color:green;
+	text-decoration:underline;
+	font-size:12px;
+	text-align : center;
+	cursor : pointer;
+	font-family:'»ªÎÄÏ¸ºÚ','Î¢ÈíÑÅºÚ',arial,sans-serif;
+}
+.jp-msg-cxt span{
+	font-size:14px;
+	font-weight:600;
+	color:#1ec65e;
+}
+
+.jigsaw-body{
+}
+
+.jigsaw-item{
+	float : left;
+   	background-repeat: no-repeat;
+   	cursor:pointer;
+}
+.debug{
+	color:#ffffff;
+}
