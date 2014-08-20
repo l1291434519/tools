@@ -1,3 +1,25 @@
+/**
+ *
+<script type="text/javascript" src="weixincc.js"></script>
+<script type="text/javascript">
+var imgid='';
+function getTitle () {
+  return "ttttttt";
+}
+function getDesc () {
+  return "ddddd";
+}
+function getImgUrl () {
+  return "http://fgdfgfg/images/all.jpg";
+}
+function getLink () {
+  return "http://cfsdfsdfsdf/v-show.php?imgid="+imgid+"&a=11==&b=11&c=1&d=11#rd";
+}
+</script>
+
+ * [cookie description]
+ * @type {Object}
+ */
   var cookie = {
             get: function(name){
                 if( name=='' ){
